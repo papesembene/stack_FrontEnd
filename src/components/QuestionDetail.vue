@@ -218,7 +218,7 @@ const validateAnswer = async (answerId) => {
       };
       setValidatedState(answerId, true); // Stocker l'état de validation dans localStorage
       alert('Réponse validée !');
-
+      window.location.reload();
       // Vérifiez si l'utilisateur a été promu et informez-le
       if (validatedAnswer.user.role === 'supervisor') {
         alert('Félicitations ! Vous êtes maintenant un superviseur.');
