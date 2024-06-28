@@ -218,6 +218,11 @@ const validateAnswer = async (answerId) => {
       };
       setValidatedState(answerId, true); // Stocker l'état de validation dans localStorage
       alert('Réponse validée !');
+
+      // Vérifiez si l'utilisateur a été promu et informez-le
+      if (validatedAnswer.user.role === 'supervisor') {
+        alert('Félicitations ! Vous êtes maintenant un superviseur.');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -225,6 +230,7 @@ const validateAnswer = async (answerId) => {
     alert('Réponse déjà validée');
   }
 };
+
 
 // Utiliser localStorage pour stocker l'état de validation des réponses
 const setValidatedState = (answerId, isValidated) => {
@@ -240,4 +246,9 @@ const getValidatedState = (answerId) => {
 
 // Nouvelle méthode pour vérifier si une réponse peut être validée
 const canValidate = (answer) => {
-  return (user.value.role === 'supervisor' || user
+  return (user.value.role === 'supervisor' || user.value.role === 'admin') && !answer.isValidated;
+};
+</script>
+
+<style scoped>
+</style>
